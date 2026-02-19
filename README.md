@@ -27,3 +27,14 @@ Nombres Propios: Se sustituyeron nombres de personas (como empleadores o trabaja
 
 ## Cómo ejecutar
 Los notebooks están configurados para descargar automáticamente el archivo anonimizado directamente desde la URL "raw" de este repositorio, permitiendo una ejecución fluida en Google Colab.
+
+## Conclusiones del Proyecto
+Tras la implementación de las técnicas clásicas de NLP y el análisis de sentimientos sobre el corpus de quejas de la ARL, se presentan los siguientes hallazgos:
+
+**Efectividad del Modelo:** Se logró un Accuracy de 0.71, lo que demuestra que el modelo de lenguaje basado en Transformers (pysentimiento) es capaz de identificar correctamente la polaridad de las quejas en un 71% de los casos, superando significativamente la línea base del azar.
+
+**Calidad de la Anonimización:** El uso de Expresiones Regulares (Regex) permitió una desidentificación exitosa de datos sensibles (NITs, Cédulas y Correos), garantizando que el flujo de procesamiento de texto se realice bajo estándares éticos de privacidad, sin afectar la capacidad del modelo para entender el contexto de la reclamación.
+
+**Análisis de Errores:** Mediante la Matriz de Confusión, se identificó que los principales errores de clasificación ocurren en quejas de tono muy formal o reportes de mantenimiento técnico, donde el modelo tiende a predecir un sentimiento negativo debido a la presencia de palabras clave de falla, aunque el usuario mantenga un tono neutral.
+
+**Valor del "Ground Truth":** El proceso de etiquetado manual de la muestra de 101 registros fue fundamental para validar que, en el contexto de una ARL, la mayoría de las interacciones son negativas por naturaleza, lo que genera un dataset desbalanceado que requiere métricas específicas como el F1-Score para una evaluación completa.
