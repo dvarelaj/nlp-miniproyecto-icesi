@@ -10,19 +10,7 @@
 
 Este proyecto aplica técnicas clásicas de **Procesamiento de Lenguaje Natural (NLP)** sobre un corpus real de quejas, peticiones y reclamos registrados por una Administradora de Riesgos Laborales (ARL) colombiana.
 
-El dataset contiene descripciones textuales anonimizadas de casos recibidos a través de múltiples canales (llamadas telefónicas, WhatsApp, plataforma web), provenientes de distintas regionales del país. Los textos fueron previamente anonimizados reemplazando datos personales con etiquetas genéricas como `[ID_ANONIMIZADO]`.
-
----
-
-## Estructura del repositorio
-
-```
- Sesion_1/
-│
-├── procesamiento_texto_nlp_clasico_FINAL.ipynb   ← Notebook principal con análisis completo
-├── Quejas_Anonimizadas_Muestra_Etiqueta.csv      ← Dataset utilizado
-└── README.md                                     ← Este archivo
-```
+El dataset contiene descripciones textuales anonimizadas de casos recibidos a través de múltiples canales (llamadas telefónicas, WhatsApp, plataforma web), provenientes de distintas regionales del país, los textos fueron previamente anonimizados reemplazando datos personales con etiquetas genéricas como `[ID_ANONIMIZADO]`.
 
 ---
 
