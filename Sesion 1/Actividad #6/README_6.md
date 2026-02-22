@@ -1,8 +1,4 @@
 # Mini-Proyecto NLP Clásico — Análisis de Quejas ARL
-
-> **Curso:** Procesamiento de Lenguaje Natural  
-> **Autores:** Diana Varela, Daniel García, Farid Sandoval
-
 ---
 
 ## Descripción del proyecto
