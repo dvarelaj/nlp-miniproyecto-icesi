@@ -1,7 +1,8 @@
 # Mini-Proyecto NLP Clásico — Análisis de Quejas ARL
 
 > **Curso:** Procesamiento de Lenguaje Natural  
-> **Sesión:** 1 — Técnicas Clásicas de NLP  
+> **Autores:** Diana Varela, Daniel García, Farid Sandoval
+  **Programa:** Maestría en Inteligencia Artificial Aplicada - Universidad ICESI
 > **Herramienta principal:** SpaCy (`es_core_news_sm`)
 
 ---
