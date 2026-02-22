@@ -1,44 +1,32 @@
-## Miniproyecto: Procesamiento de Texto con Técnicas Clásicas (NLP)
-Este proyecto forma parte del curso de Procesamiento del Lenguaje Natural, consiste en la implementación de un flujo de trabajo para el análisis de texto y sentimiento utilizando un información real de quejas de servicios de la solución web de una Aseguradora.
+Miniproyecto: Procesamiento de Texto con Técnicas Clásicas (NLP)
+Materia: Procesamiento de Lenguaje Natural (NLP) — Universidad Icesi
+Integrantes: Daniel Garcia, Farid Sandoval y Diana Varela
 
-**Elaborado por:** Daniel Garcia, Farid Sandoval y Diana Varela  
-**Fecha:** Febrero 2026  
-**Materia:** Procesamiento de Lenguaje Natural (NLP) - Universidad Icesi
+Descripción General
+Este miniproyecto implementa un flujo completo de análisis de texto sobre un corpus real de quejas registradas por una Administradora de Riesgos Laborales (ARL) colombiana. La sesión está compuesta por dos actividades que progresan desde el procesamiento lingüístico clásico hasta la inferencia con modelos de lenguaje basados en Transformers.
+El dataset contiene 101 registros anonimizados de quejas, peticiones y reclamos recibidos por múltiples canales (llamadas, WhatsApp, plataforma web) desde distintas regionales del país. La anonimización fue realizada previamente mediante expresiones regulares y NER, sustituyendo datos personales por etiquetas genéricas, en cumplimiento de la Ley de Protección de Datos Personales.
 
-## Información
-La base de datos original consiste en un registro de quejas del sector asegurador correspondiente a enero de 2026. El conjunto de datos incluye variables como:
+Estructura del Proyecto
+Sesion 1/
+├── Actividad #6 — NLP Clásico/
+│   ├── procesamiento_nlp_clasico.ipynb
+│   └── README_6.md
+├── Actividad #7 — Análisis de Sentimientos/
+│   ├── analisis_sentimientos_quejas.ipynb
+│   └── README_7.md
+└── Data Base/
+    └── Quejas_Anonimizadas_Muestra_Etiqueta.csv
 
-**Descripción:** Texto detallado del reclamo o falla técnica reportada por el usuario.
+Actividad 6 — NLP Clásico con SpaCy
+Aplicación de técnicas clásicas de procesamiento de lenguaje sobre la queja más representativa del corpus (337 palabras) y sobre las primeras 100 quejas para el análisis de frecuencia. Las técnicas cubiertas son NER, tokenización, POS tagging, lematización y pattern matching.
+→ Ver análisis detallado y conclusiones en README_6.md
 
-**Tipificación Interna:** Categorización administrativa de la queja.
+Actividad 7 — Análisis de Sentimientos con Transformers
+Evaluación del modelo pysentimiento (basado en BERT para español) sobre las 101 quejas anonimizadas. Se contrasta la predicción automática del modelo contra un etiquetado manual (ground truth) para medir su desempeño mediante Accuracy, F1-Score y Matriz de Confusión.
+→ Ver análisis detallado y conclusiones en README_7.md
 
-**Metadatos:** Fechas de apertura/cierre, canal de comunicación y lugar de ocurrencia.
+Resultado Global
+El modelo de sentimientos alcanzó un Accuracy de 0.71 sobre el corpus de quejas en español, con un F1-Score de 0.81 para la categoría negativa. El corpus, desbalanceado por naturaleza hacia lo negativo, representa un caso de uso real donde el lenguaje técnico y administrativo introduce retos que los modelos de propósito general no siempre resuelven correctamente.
 
-## Tratamiento Ético y Anonimización
-Por razones de seguridad de la información y cumplimiento de la Ley de Protección de Datos Personales, la base de datos original no se encuentra cargada en este repositorio público. En su lugar, se realizó un proceso de pre-procesamiento fuera de línea para generar el archivo quejas_anonimizadas_muestra.csv. El proceso consistió en:
-
-**Limpieza de Caracteres:** Se eliminaron caracteres especiales, se normalizaron espacios y se trataron tildes mediante normalización Unicode NFKD.
-
-***Anonimización mediante Regex:*** 
-
-**Identificaciones:** Se enmascararon números de cédula y NIT (de 7 a 11 dígitos) con y sin separadores de miles.
-
-**Correos Electrónicos:** Se reemplazaron los usuarios por la etiqueta correo_anonimo manteniendo el dominio para análisis de canal.
-
-**Nombres Propios:** Se sustituyeron nombres de personas (como empleadores o trabajadores mencionados) detectados mediante análisis de entidades (NER).
-
-**Muestreo:** Se seleccionó una muestra representativa de 101 registros para demostrar la funcionalidad del código sin comprometer la privacidad del corpus completo.
-
-## Cómo ejecutar
-Los notebooks están configurados para descargar automáticamente el archivo anonimizado directamente desde la URL "raw" de este repositorio, permitiendo una ejecución fluida en Google Colab.
-
-## Conclusiones del Proyecto
-Tras la implementación de las técnicas clásicas de NLP y el análisis de sentimientos sobre el corpus de quejas de la ARL, se presentan los siguientes hallazgos:
-
-**Efectividad del Modelo:** Se logró un Accuracy de 0.71, lo que demuestra que el modelo de lenguaje basado en Transformers (pysentimiento) es capaz de identificar correctamente la polaridad de las quejas en un 71% de los casos, superando significativamente la línea base del azar.
-
-**Calidad de la Anonimización:** El uso de Expresiones Regulares (Regex) permitió una desidentificación exitosa de datos sensibles (NITs, Cédulas y Correos), garantizando que el flujo de procesamiento de texto se realice bajo estándares éticos de privacidad, sin afectar la capacidad del modelo para entender el contexto de la reclamación.
-
-**Análisis de Errores:** Mediante la Matriz de Confusión, se identificó que los principales errores de clasificación ocurren en quejas de tono muy formal o reportes de mantenimiento técnico, donde el modelo tiende a predecir un sentimiento negativo debido a la presencia de palabras clave de falla, aunque el usuario mantenga un tono neutral.
-
-**Valor del "Ground Truth":** El proceso de etiquetado manual de la muestra de 101 registros fue fundamental para validar que, en el contexto de una ARL, la mayoría de las interacciones son negativas por naturaleza, lo que genera un dataset desbalanceado que requiere métricas específicas como el F1-Score para una evaluación completa.
+Cómo ejecutar
+Los notebooks están configurados para descargarse y ejecutarse directamente en Google Colab. El dataset se carga automáticamente desde la URL pública del repositorio, sin necesidad de configuración adicional.
