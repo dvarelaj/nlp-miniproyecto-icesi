@@ -18,9 +18,9 @@ Por razones de seguridad de la información y cumplimiento de la Ley de Protecci
 
 **Correos Electrónicos:** Se reemplazaron los usuarios por la etiqueta correo_anonimo manteniendo el dominio para análisis de canal.
 
-Nombres Propios: Se sustituyeron nombres de personas (como empleadores o trabajadores mencionados) detectados mediante análisis de entidades (NER).
+**Nombres Propios:** Se sustituyeron nombres de personas (como empleadores o trabajadores mencionados) detectados mediante análisis de entidades (NER).
 
-**Muestreo:** Se seleccionó una muestra representativa de 100 registros para demostrar la funcionalidad del código sin comprometer la privacidad del corpus completo.
+**Muestreo:** Se seleccionó una muestra representativa de 101 registros para demostrar la funcionalidad del código sin comprometer la privacidad del corpus completo.
 
 ## Cómo ejecutar
 Los notebooks están configurados para descargar automáticamente el archivo anonimizado directamente desde la URL "raw" de este repositorio, permitiendo una ejecución fluida en Google Colab.
