@@ -45,12 +45,6 @@ Evaluación del modelo `pysentimiento` (basado en BERT para español) sobre las 
 
 ---
 
-## Resultado Global
-
-El modelo de sentimientos alcanzó un **Accuracy de 0.71** sobre el corpus de quejas en español, con un F1-Score de 0.81 para la categoría negativa, sobre un corpus desbalanceado por naturaleza hacia lo negativo que representa un caso de uso real donde el lenguaje técnico y administrativo introduce retos que los modelos de propósito general no siempre resuelven correctamente.
-
----
-
 ## Cómo ejecutar
 
 Los notebooks están configurados para descargarse y ejecutarse directamente en Google Colab, cargando el dataset automáticamente desde la URL pública del repositorio sin necesidad de configuración adicional.
