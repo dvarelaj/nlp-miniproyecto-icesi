@@ -2,7 +2,6 @@
 
 > **Curso:** Procesamiento de Lenguaje Natural  
 > **Autores:** Diana Varela, Daniel García, Farid Sandoval
-> **Programa:** Maestría en Inteligencia Artificial Aplicada - Universidad ICESI
 
 ---
 
