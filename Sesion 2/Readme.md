@@ -40,6 +40,3 @@ Limpieza Especializada: Filtro avanzado para eliminar ruido de comandos LaTeX si
 
 **Conclusión**
 El proyecto demuestra que para textos científicos cortos (abstracts), los modelos de Embeddings que capturan la semántica global son más eficientes y precisos que las arquitecturas secuenciales complejas o los modelos estadísticos tradicionales.
-
-Autores: Diana Carolina Valera Jaramillo & Equipo.
-Institución: Universidad Icesi - Maestría en IA Aplicada.
