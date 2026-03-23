@@ -20,12 +20,12 @@ El objetivo es comparar distintas estrategias de clasificación — desde modelo
 
 El notebook sigue un flujo de trabajo completo dividido en:
 
-1. **Carga y Exploración (EDA)**: Análisis de la distribución de las 16 clases y la longitud de los documentos por tipo. El dataset presenta un balance casi perfecto (~3.100 muestras por clase), condición ideal para una evaluación justa de los modelos.
+1. **Carga y Exploración (EDA)**: Análisis de la distribución de las 16 clases y la longitud de los documentos por tipo. El dataset presenta un balance casi perfecto (~3.100 muestras por clase), condición ideal para una evaluación justa.
 2. **Preparación del Target**: Uso de `document_type` como variable objetivo y codificación con `LabelEncoder`. Subsample estratificado de 8.000 ejemplos para garantizar tiempos de entrenamiento razonables en GPU T4.
 3. **Zero-Shot Baseline**: Evaluación de dos modelos sin entrenamiento supervisado — BART-MNLI (inglés) y BETO-XNLI (español) — para establecer un piso de referencia y medir el impacto del idioma en clasificación zero-shot.
 4. **Fine-tuning BETO**: Ajuste supervisado del modelo nativo del español con cabeza de clasificación de 16 clases, 4 épocas y `max_length=256` para capturar la longitud de los documentos clínicos.
 5. **Fine-tuning XLM-RoBERTa**: Mismo proceso con el modelo multilingüe, bajo condiciones idénticas a BETO para garantizar comparabilidad.
-6. **Comparación Final**: Tabla de métricas, gráfica comparativa de accuracy y F1, y análisis de errores por clase con matrices de confusión.
+6. **Comparación Final**: Tabla de métricas generada automáticamente, gráfica comparativa y conclusiones con hallazgos propios.
 
 ## Comparativa de Resultados
 
@@ -33,15 +33,15 @@ El notebook sigue un flujo de trabajo completo dividido en:
 |---------|--------|--------|-----------|----------|-------------|
 | **Zero-Shot** | BART-MNLI | Inglés | 406M | 6.00% | 0.026 |
 | **Zero-Shot** | BETO-XNLI | Español | 110M | 5.00% | 0.038 |
-| **Fine-tuning** | BETO | Español | 110M | **80.63%** | **0.809** |
-| **Fine-tuning** | XLM-RoBERTa | Multilingüe | 278M | **80.63%** | **0.811** |
+| **Fine-tuning** | **BETO** | **Español** | **110M** | **81.50%** | **0.818** |
+| **Fine-tuning** | XLM-RoBERTa | Multilingüe | 278M | 80.63% | 0.811 |
 
 ## Conclusiones y Hallazgos
 
-* **El fine-tuning es indispensable en dominios especializados**: El salto de ~6% (zero-shot) a ~81% (fine-tuning) confirma que 16 tipos de documentos médicos no pueden distinguirse sin ejemplos de entrenamiento, independientemente del idioma o tamaño del modelo.
-* **El idioma importa en zero-shot, no en fine-tuning**: BETO-XNLI superó a BART en F1 (0.038 vs 0.026) al evaluar textos en español sin entrenamiento. Sin embargo, con fine-tuning ambos modelos convergen al mismo resultado — la ventaja del modelo especializado desaparece con suficientes datos.
-* **Más parámetros no garantizan mejor resultado**: XLM-RoBERTa (278M parámetros) tardó el doble en entrenar que BETO (110M) y obtuvo prácticamente el mismo F1 final. BETO además convergió mucho más rápido: F1=0.752 en la época 1 vs 0.547 de XLM-RoBERTa.
-* **Las clases narrativas son el talón de Aquiles**: `MEDICAL_RECORD` y `OUTPATIENT_EXAMINATION` fueron las más difíciles para ambos modelos (F1 < 0.65). Comparten vocabulario clínico con `DISCHARGE_SUMMARY`, haciendo su distinción difícil incluso para un lector humano sin ver el encabezado del documento.
+* **El fine-tuning es indispensable en dominios especializados**: El salto de ~6% (zero-shot) a ~81% (fine-tuning) — una mejora de 75 puntos porcentuales — confirma que 16 tipos de documentos médicos no pueden distinguirse sin ejemplos de entrenamiento, independientemente del idioma o tamaño del modelo.
+* **El idioma importa en zero-shot, no en fine-tuning**: BETO-XNLI superó a BART en F1 (0.038 vs 0.026) al evaluar textos en español sin entrenamiento. Con fine-tuning, ambos modelos convergen al mismo nivel de rendimiento.
+* **El modelo especializado supera al multilingüe en eficiencia**: BETO (español nativo, 110M parámetros) alcanzó mejor F1 que XLM-RoBERTa (278M parámetros) en la mitad de tiempo. En la primera época, BETO ya alcanzaba F1=0.752 mientras XLM-RoBERTa llegaba apenas a 0.547.
+* **Las clases narrativas son el talón de Aquiles**: `MEDICAL_RECORD` y `OUTPATIENT_EXAMINATION` fueron las más difíciles para ambos modelos. Comparten vocabulario clínico con `DISCHARGE_SUMMARY`, haciendo su distinción difícil incluso para un lector humano sin ver el encabezado del documento.
 
 ---
 
